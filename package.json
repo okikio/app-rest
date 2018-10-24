@@ -1,0 +1,24 @@
+{
+    "name": "rest-api",
+    "version": "1.0.0",
+    "description": "A rest api",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "engines": {
+        "node": "11.0.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/okikio/rest-api.git"
+    },
+    "author": "Okiki Ojo",
+    "license": "GPL-3.0",
+    "bugs": {
+        "url": "https://github.com/okikio/rest-api/issues"
+    },
+    "dependencies": {
+        "express": "^4.16.4"
+    }
+}

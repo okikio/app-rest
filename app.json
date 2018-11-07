@@ -1,0 +1,17 @@
+{
+    "name": "Rest API",
+    "description": "A barebones Node.js rest api using Express",
+    "repository": "https://github.com/okikio/rest-api",
+    "keywords": ["node", "express", "heroku", "rest", "api"],
+    "scripts": {},
+    "env": {},
+    "formation": {
+        "web": {
+            "quantity": 1
+        }
+    },
+    "addons": [ ],
+    "buildpacks": [{
+        "url": "heroku/nodejs"
+    }]
+}

@@ -9,10 +9,12 @@ var ejs = require("ejs");
 var compress = require('compression');
 var _ = require("underscore");
 
-// Setup `.env` file
-var dotenv = require('dotenv');
-var env = dotenv.config();
-if (env.error) { throw env.error; }
+// Setup `.env` file, for dev
+if (process.env['NODE_ENV'] !== "production") {
+    var dotenv = require('dotenv');
+    var env = dotenv.config();
+    if (env.error) { throw env.error; }
+}
 
 // List of routers 
 var Router = require('./util/router');
@@ -25,7 +27,6 @@ var routers = routes["routers"];
 
 // For database access
 var private, mongoUrl;
-process.env['NODE_ENV'] = 'production';
 
 // Compress/GZIP Server
 app.use(compress());
@@ -42,8 +43,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-private = env.parsed;
-mongoUrl = 'mongodb://' + private.user.toString() + ':' + private.password.toString() + '@ds029640.mlab.com:29640/rest-api';
+private = process.env;
+mongoUrl = 'mongodb://' + private.user + ':' + private.password + '@ds029640.mlab.com:29640/rest-api';
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 mongoose.Promise = global.Promise;

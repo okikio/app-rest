@@ -1,0 +1,7 @@
+<script src="/js/jquery.min.js"></script>
+<script src="/js/main.min.js"></script>
+<% if (typeof js !== "undefined") { %>
+    <% js.forEach(function(scripts) { %>
+        <script src="<% scripts %>"></script>
+    <% }); %>
+<% } %>

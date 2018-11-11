@@ -74,27 +74,4 @@ app.use(function(err, req, res, next) {
     res.render('template/error');
 });
 
-/*
-const PORT = process.env.PORT;
-
-var express = require("express");
-var bodyParser = require("body-parser");
-var mongoose = require('mongoose');
-var routes = require("./routes/route");
-var private = process.env;
-        this.mongoUrl = 'mongodb://' + private.user + ':' + private.password + '@ds029640.mlab.com:29640/rest-api';
-        this.routePrv = new routes();
-        this.app = express();
-        this.app.use(bodyParser.json());
-        this.app.use(bodyParser.urlencoded({ extended: false }));
-        this.routePrv.routes(this.app);
-        mongoose.Promise = global.Promise;
-        mongoose.connect(this.mongoUrl);
-
-app.listen(PORT, () => {
-        console.log('Express server listening on port ' + PORT);
-    }) */
-// https://medium.com/@onejohi/building-a-simple-rest-api-with-nodejs-and-express-da6273ed7ca9
-// https://www.codementor.io/olatundegaruba/nodejs-restful-apis-in-10-minutes-q0sgsfhbd
-// https://www.toptal.com/nodejs/secure-rest-api-in-nodejs
 module.exports = app;

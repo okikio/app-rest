@@ -28,7 +28,7 @@ module.exports = {
         });
     },
     deleteContact: function(req, res) {
-        Contact.remove({ _id: req.params.contactId }, (err, contact) => {
+        Contact.remove({ _id: req.params.contactId }, function (err, contact) {
             if (err) { res.send(err); }
             res.json({ message: 'Successfully deleted contact!' });
         });

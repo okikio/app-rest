@@ -22,4 +22,6 @@ module.exports = new Schema({
         type: Date,
         default: Date.now
     }
+}, {
+    collection: 'contacts'
 });

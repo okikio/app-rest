@@ -9,13 +9,6 @@ var ejs = require("ejs");
 var compress = require('compression');
 var _ = require("underscore");
 
-// Setup `.env` file, for dev
-if (process.env['NODE_ENV'] !== "production") {
-    var dotenv = require('dotenv');
-    var env = dotenv.config();
-    if (env.error) { throw env.error; }
-}
-
 // List of routers 
 var Router = require('./util/router');
 var app = express();
@@ -24,9 +17,6 @@ var app = express();
 var routes = require("./render.min");
 var routeList = routes["routes"];
 var routers = routes["routers"];
-
-// For database access
-var private, mongoUrl;
 
 // Compress/GZIP Server
 app.use(compress());
@@ -43,12 +33,21 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-private = process.env;
-mongoUrl = 'mongodb://' + private.user + ':' + private.password + '@ds029640.mlab.com:29640/rest-api';
+
+// For database access
+const mongoUrl =
+    "mongodb+srv://okikio:" +
+    process.env.atlasPassword +
+    "@democluster.akqec.mongodb.net/rest-api?retryWrites=true&w=majority";
+// mongoUrl = 'mongodb://' + process.env.user + ':' + process.env.password + '@ds029640.mlab.com:29640/rest-api';
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 mongoose.Promise = global.Promise;
-mongoose.connect(mongoUrl, { useNewUrlParser: true });
+mongoose.connect(mongoUrl, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    // serverApi: ServerApiVersion.v1,
+});
 
 // Set route to routers 
 _.each(routeList, function(_router, route, obj) {
